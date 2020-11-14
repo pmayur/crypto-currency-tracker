@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "362682035041",
+    "firebase_url": "https://wallet-c0e81.firebaseio.com",
+    "project_id": "wallet-c0e81",
+    "storage_bucket": "wallet-c0e81.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:362682035041:android:cce13da3db6d113935b320",
+        "android_client_info": {
+          "package_name": "com.example.wallet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "362682035041-p5k1pi2520fn9cr9q546fu7nrnhspc5a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmkGlQKhgYiQJhXaCztL8PhoaAUreouEA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "362682035041-p5k1pi2520fn9cr9q546fu7nrnhspc5a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
