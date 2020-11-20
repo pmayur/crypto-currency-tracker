@@ -9,15 +9,13 @@ class Authentication extends StatefulWidget {
 
 class _AuthenticationState extends State<Authentication> {
   /* Controllers for EMAIL and PASSWORD fields */
-  TextEditingController _emailField = TextEditingController();
-  TextEditingController _passwordField = TextEditingController();
-  List<bool> _isSelected = [true, false];
+  bool isLoginPage = true;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        // DECORATION for the entire background
+        // DECORATION for background
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topRight,
@@ -28,20 +26,18 @@ class _AuthenticationState extends State<Authentication> {
             ],
           ),
         ),
-
-        // CARD with fields
+        
+        // Login / Register form
         child: Container(
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                // Email container
                 Container(
-                  height: 15,
-                ),
-                Container(
+                  padding: EdgeInsets.only(bottom: 1),
                   width: 300,
                   child: TextField(
-                    autofocus: true,
                     decoration: InputDecoration(
                       filled: true,
                       fillColor: Colors.white,
@@ -62,13 +58,12 @@ class _AuthenticationState extends State<Authentication> {
                     ),
                   ),
                 ),
-                Container(
-                  height: 1,
-                ),
+
+                // Password Container
                 Container(
                   width: 300,
+                  padding: EdgeInsets.only(bottom: 1),
                   child: TextField(
-                    autofocus: true,
                     decoration: InputDecoration(
                       filled: true,
                       fillColor: Colors.white,
@@ -91,13 +86,12 @@ class _AuthenticationState extends State<Authentication> {
                     ),
                   ),
                 ),
-                Container(
-                  height: 1,
-                ),
+
+                // Confirm Password Container
                 Container(
                   width: 300,
+                  padding: EdgeInsets.only(bottom: 10),
                   child: TextField(
-                    autofocus: true,
                     decoration: InputDecoration(
                       filled: true,
                       fillColor: Colors.white,
@@ -122,9 +116,8 @@ class _AuthenticationState extends State<Authentication> {
                     ),
                   ),
                 ),
-                Container(
-                  height: 10,
-                ),
+
+                // Login Button
                 ButtonTheme(
                   height: 50,
                   minWidth: 300,
@@ -139,16 +132,13 @@ class _AuthenticationState extends State<Authentication> {
                   ),
                 ),
 
+                // OR text Container
                 Container(
-                  height: 20,
+                  padding: EdgeInsets.only(top: 10, bottom: 20),
+                  child: Text('OR'),
                 ),
 
-                Text('OR'),
-
-                Container(
-                  height: 20,
-                ),
-
+                // Signup / Login Text Link
                 Text(
                   'Register',
                   style: TextStyle(
