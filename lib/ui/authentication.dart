@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:wallet/flutterfire/flutterfire.dart';
+
+import 'home_view.dart';
 
 class Authentication extends StatefulWidget {
   Authentication({Key key}) : super(key: key);
@@ -9,13 +12,30 @@ class Authentication extends StatefulWidget {
 
 class _AuthenticationState extends State<Authentication> {
   /* Controllers for EMAIL and PASSWORD fields */
-  bool isLoginPage = true;
+  TextEditingController _emailField = TextEditingController();
+  TextEditingController _passwordField = TextEditingController();
+  TextEditingController _passwordConfirmationField = TextEditingController();
 
+  bool isLoginPage = true;
   bool isPasswordObscure = true;
   bool isConfirmationPasswordObscure = true;
 
   @override
   Widget build(BuildContext context) {
+    void onButtonPressed() async {
+      bool shouldNavigate = await buttonPressed(isLoginPage, _emailField.text,
+          _passwordField.text, _passwordConfirmationField.text);
+
+      if (shouldNavigate) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => HomeView(),
+          ),
+        );
+      }
+    }
+
     return Scaffold(
       body: Container(
         // DECORATION for background
@@ -41,6 +61,7 @@ class _AuthenticationState extends State<Authentication> {
                   padding: EdgeInsets.only(bottom: 1),
                   width: 300,
                   child: TextField(
+                    controller: _emailField,
                     decoration: InputDecoration(
                       filled: true,
                       fillColor: Colors.white,
@@ -69,6 +90,7 @@ class _AuthenticationState extends State<Authentication> {
                     width: 300,
                     padding: EdgeInsets.only(bottom: 1),
                     child: TextField(
+                      controller: _passwordField,
                       enableInteractiveSelection: false,
                       obscureText: isPasswordObscure,
                       decoration: InputDecoration(
@@ -89,9 +111,9 @@ class _AuthenticationState extends State<Authentication> {
                             });
                           },
                           child: Icon(
-                            isPasswordObscure ?
-                            Icons.visibility :
-                            Icons.visibility_off,
+                            isPasswordObscure
+                                ? Icons.visibility
+                                : Icons.visibility_off,
                             color: Colors.black38,
                           ),
                         ),
@@ -109,6 +131,7 @@ class _AuthenticationState extends State<Authentication> {
                   width: 300,
                   padding: EdgeInsets.only(bottom: 10),
                   child: TextField(
+                    controller: _passwordConfirmationField,
                     enableInteractiveSelection: false,
                     obscureText: isConfirmationPasswordObscure,
                     decoration: InputDecoration(
@@ -123,18 +146,19 @@ class _AuthenticationState extends State<Authentication> {
                         color: Colors.black38,
                       ),
                       suffixIcon: GestureDetector(
-                          onTapUp: (_) {
-                            setState(() {
-                              isConfirmationPasswordObscure = !isConfirmationPasswordObscure;
-                            });
-                          },
-                          child: Icon(
-                            isConfirmationPasswordObscure ?
-                            Icons.visibility :
-                            Icons.visibility_off,
-                            color: Colors.black38,
-                          ),
+                        onTapUp: (_) {
+                          setState(() {
+                            isConfirmationPasswordObscure =
+                                !isConfirmationPasswordObscure;
+                          });
+                        },
+                        child: Icon(
+                          isConfirmationPasswordObscure
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                          color: Colors.black38,
                         ),
+                      ),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.only(
                             bottomLeft: Radius.circular(25),
@@ -150,7 +174,9 @@ class _AuthenticationState extends State<Authentication> {
                   height: 50,
                   minWidth: 300,
                   child: RaisedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      onButtonPressed();
+                    },
                     textColor: Colors.white54,
                     color: Color(0xff0a4457),
                     child: isLoginPage ? Text("LOGIN") : Text("SIGNUP"),
