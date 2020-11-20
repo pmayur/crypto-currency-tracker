@@ -11,75 +11,153 @@ class _AuthenticationState extends State<Authentication> {
   /* Controllers for EMAIL and PASSWORD fields */
   TextEditingController _emailField = TextEditingController();
   TextEditingController _passwordField = TextEditingController();
+  List<bool> _isSelected = [true, false];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        decoration: BoxDecoration(color: Colors.cyanAccent),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
+        // DECORATION for the entire background
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topRight,
+            end: Alignment.bottomLeft,
+            colors: [
+              Color(0xff349497),
+              Color(0xff32afd7),
+            ],
+          ),
+        ),
 
-            /* EMAIL FIELD */
-            TextFormField(
-              controller: _emailField,
-              decoration: InputDecoration(
-                hintText: "youremail@email.com",
-                hintStyle: TextStyle(
-                  color: Colors.white,
+        // CARD with fields
+        child: Container(
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  height: 15,
                 ),
-                labelText: "Email",
-                labelStyle: TextStyle(
-                  color: Colors.white,
+                Container(
+                  width: 300,
+                  child: TextField(
+                    autofocus: true,
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Colors.white,
+                      hintText: 'Email',
+                      hintStyle: TextStyle(
+                        color: Colors.black26,
+                      ),
+                      prefixIcon: Icon(
+                        Icons.email_rounded,
+                        color: Colors.black38,
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(25),
+                            topRight: Radius.circular(25)),
+                        borderSide: BorderSide.none,
+                      ),
+                    ),
+                  ),
                 ),
-              ),
-            ),
+                Container(
+                  height: 1,
+                ),
+                Container(
+                  width: 300,
+                  child: TextField(
+                    autofocus: true,
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Colors.white,
+                      hintText: 'Password',
+                      hintStyle: TextStyle(
+                        color: Colors.black26,
+                      ),
+                      prefixIcon: Icon(
+                        Icons.lock,
+                        color: Colors.black38,
+                      ),
+                      suffixIcon: Icon(
+                        Icons.visibility,
+                        color: Colors.black38,
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(0),
+                        borderSide: BorderSide.none,
+                      ),
+                    ),
+                  ),
+                ),
+                Container(
+                  height: 1,
+                ),
+                Container(
+                  width: 300,
+                  child: TextField(
+                    autofocus: true,
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Colors.white,
+                      hintText: 'Confirm Password',
+                      hintStyle: TextStyle(
+                        color: Colors.black26,
+                      ),
+                      prefixIcon: Icon(
+                        Icons.lock,
+                        color: Colors.black38,
+                      ),
+                      suffixIcon: Icon(
+                        Icons.visibility,
+                        color: Colors.black38,
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(25),
+                            bottomRight: Radius.circular(25)),
+                        borderSide: BorderSide.none,
+                      ),
+                    ),
+                  ),
+                ),
+                Container(
+                  height: 10,
+                ),
+                ButtonTheme(
+                  height: 50,
+                  minWidth: 300,
+                  child: RaisedButton(
+                    onPressed: () {},
+                    textColor: Colors.white54,
+                    color: Color(0xff0a4457),
+                    child: Text("LOGIN"),
+                    shape: new RoundedRectangleBorder(
+                      borderRadius: new BorderRadius.circular(30.0),
+                    ),
+                  ),
+                ),
 
-            /* PASSWORD FIELD */
-            TextFormField(
-              controller: _passwordField,
-              obscureText: true,
-              decoration: InputDecoration(
-                hintText: "password",
-                hintStyle: TextStyle(
-                  color: Colors.white,
+                Container(
+                  height: 20,
                 ),
-                labelText: "Password",
-                labelStyle: TextStyle(
-                  color: Colors.white,
+
+                Text('OR'),
+
+                Container(
+                  height: 20,
                 ),
-              ),
-            ),
 
-            /* REGISTER BUTTON */
-            Container(
-              width: MediaQuery.of(context).size.width / 1.4,
-              height: 45,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15), color: Colors.white,
-              ),
-              child: MaterialButton(
-                onPressed: () {},
-                child: Text("Register"),
-              ),
+                Text(
+                  'Register',
+                  style: TextStyle(
+                    decoration: TextDecoration.underline,
+                  ),
+                )
+              ],
             ),
-
-            /* LOGIN BUTTON */
-            Container(
-              width: MediaQuery.of(context).size.width / 1.4,
-              height: 45,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15), color: Colors.white,
-              ),
-              child: MaterialButton(
-                onPressed: () {},
-                child: Text("Log In"),
-              ),
-            ),
-          ],
+          ),
         ),
       ),
     );
