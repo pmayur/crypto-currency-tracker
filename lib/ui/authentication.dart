@@ -11,6 +11,9 @@ class _AuthenticationState extends State<Authentication> {
   /* Controllers for EMAIL and PASSWORD fields */
   bool isLoginPage = true;
 
+  bool isPasswordObscure = true;
+  bool isConfirmationPasswordObscure = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,6 +69,8 @@ class _AuthenticationState extends State<Authentication> {
                     width: 300,
                     padding: EdgeInsets.only(bottom: 1),
                     child: TextField(
+                      enableInteractiveSelection: false,
+                      obscureText: isPasswordObscure,
                       decoration: InputDecoration(
                         filled: true,
                         fillColor: Colors.white,
@@ -77,9 +82,18 @@ class _AuthenticationState extends State<Authentication> {
                           Icons.lock,
                           color: Colors.black38,
                         ),
-                        suffixIcon: Icon(
-                          Icons.visibility,
-                          color: Colors.black38,
+                        suffixIcon: GestureDetector(
+                          onTapUp: (_) {
+                            setState(() {
+                              isPasswordObscure = !isPasswordObscure;
+                            });
+                          },
+                          child: Icon(
+                            isPasswordObscure ?
+                            Icons.visibility :
+                            Icons.visibility_off,
+                            color: Colors.black38,
+                          ),
                         ),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(0),
@@ -95,10 +109,12 @@ class _AuthenticationState extends State<Authentication> {
                   width: 300,
                   padding: EdgeInsets.only(bottom: 10),
                   child: TextField(
+                    enableInteractiveSelection: false,
+                    obscureText: isConfirmationPasswordObscure,
                     decoration: InputDecoration(
                       filled: true,
                       fillColor: Colors.white,
-                      hintText: isLoginPage ? 'Password' :'Confirm Password',
+                      hintText: isLoginPage ? 'Password' : 'Confirm Password',
                       hintStyle: TextStyle(
                         color: Colors.black26,
                       ),
@@ -106,10 +122,19 @@ class _AuthenticationState extends State<Authentication> {
                         Icons.lock,
                         color: Colors.black38,
                       ),
-                      suffixIcon: Icon(
-                        Icons.visibility,
-                        color: Colors.black38,
-                      ),
+                      suffixIcon: GestureDetector(
+                          onTapUp: (_) {
+                            setState(() {
+                              isConfirmationPasswordObscure = !isConfirmationPasswordObscure;
+                            });
+                          },
+                          child: Icon(
+                            isConfirmationPasswordObscure ?
+                            Icons.visibility :
+                            Icons.visibility_off,
+                            color: Colors.black38,
+                          ),
+                        ),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.only(
                             bottomLeft: Radius.circular(25),
