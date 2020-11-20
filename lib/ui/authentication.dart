@@ -26,7 +26,7 @@ class _AuthenticationState extends State<Authentication> {
             ],
           ),
         ),
-        
+
         // Login / Register form
         child: Container(
           child: Center(
@@ -60,28 +60,31 @@ class _AuthenticationState extends State<Authentication> {
                 ),
 
                 // Password Container
-                Container(
-                  width: 300,
-                  padding: EdgeInsets.only(bottom: 1),
-                  child: TextField(
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Colors.white,
-                      hintText: 'Password',
-                      hintStyle: TextStyle(
-                        color: Colors.black26,
-                      ),
-                      prefixIcon: Icon(
-                        Icons.lock,
-                        color: Colors.black38,
-                      ),
-                      suffixIcon: Icon(
-                        Icons.visibility,
-                        color: Colors.black38,
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(0),
-                        borderSide: BorderSide.none,
+                Visibility(
+                  visible: isLoginPage ? false : true,
+                  child: Container(
+                    width: 300,
+                    padding: EdgeInsets.only(bottom: 1),
+                    child: TextField(
+                      decoration: InputDecoration(
+                        filled: true,
+                        fillColor: Colors.white,
+                        hintText: 'Password',
+                        hintStyle: TextStyle(
+                          color: Colors.black26,
+                        ),
+                        prefixIcon: Icon(
+                          Icons.lock,
+                          color: Colors.black38,
+                        ),
+                        suffixIcon: Icon(
+                          Icons.visibility,
+                          color: Colors.black38,
+                        ),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(0),
+                          borderSide: BorderSide.none,
+                        ),
                       ),
                     ),
                   ),
@@ -95,7 +98,7 @@ class _AuthenticationState extends State<Authentication> {
                     decoration: InputDecoration(
                       filled: true,
                       fillColor: Colors.white,
-                      hintText: 'Confirm Password',
+                      hintText: isLoginPage ? 'Password' :'Confirm Password',
                       hintStyle: TextStyle(
                         color: Colors.black26,
                       ),
@@ -125,7 +128,7 @@ class _AuthenticationState extends State<Authentication> {
                     onPressed: () {},
                     textColor: Colors.white54,
                     color: Color(0xff0a4457),
-                    child: Text("LOGIN"),
+                    child: isLoginPage ? Text("LOGIN") : Text("SIGNUP"),
                     shape: new RoundedRectangleBorder(
                       borderRadius: new BorderRadius.circular(30.0),
                     ),
@@ -138,11 +141,18 @@ class _AuthenticationState extends State<Authentication> {
                   child: Text('OR'),
                 ),
 
-                // Signup / Login Text Link
-                Text(
-                  'Register',
-                  style: TextStyle(
-                    decoration: TextDecoration.underline,
+                // Signup / Login switching Text Link
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      isLoginPage = !isLoginPage;
+                    });
+                  },
+                  child: Text(
+                    isLoginPage ? 'Register' : 'Login',
+                    style: TextStyle(
+                      decoration: TextDecoration.underline,
+                    ),
                   ),
                 )
               ],
