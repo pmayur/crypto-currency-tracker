@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import 'add_view.dart';
+
 class HomeView extends StatefulWidget {
   HomeView({Key key}) : super(key: key);
 
@@ -35,7 +37,7 @@ class _HomeViewState extends State<HomeView> {
                 children: <Widget>[
                   Padding(
                     padding: EdgeInsets.only(left: 10.0, right: 15.0),
-                    child: Icon(icon, color: Colors.grey),
+                    child: Image.network("https://assets.coingecko.com/coins/images/1/thumb/bitcoin.png?1547033579"),
                   ),
                   Expanded(
                     child: Column(
@@ -102,13 +104,19 @@ class _HomeViewState extends State<HomeView> {
                 ),
               ),
               ListTile(
-                title: Text('Item 1'),
+                title: Text('Add Coin'),
                 onTap: () {
                   Navigator.pop(context);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => AddView(),
+                    ),
+                  );
                 },
               ),
               ListTile(
-                title: Text('Item 2'),
+                title: Text('Remove Coin'),
                 onTap: () {
                   Navigator.pop(context);
                 },
@@ -116,11 +124,13 @@ class _HomeViewState extends State<HomeView> {
               Expanded(
                 child: Align(
                   alignment: Alignment.bottomCenter,
-                  child: ListTile(
-                    title: Text('Item 3'),
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
+                  child: SafeArea(
+                    child: ListTile(
+                      title: Text('Log Out'),
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                    ),
                   ),
                 ),
               )
@@ -219,6 +229,8 @@ class _HomeViewState extends State<HomeView> {
                   child: SingleChildScrollView(
                     child: Column(
                       children: [
+                        // FontAwesomeIcons.btc
+                        // https://assets.coingecko.com/coins/images/976/thumb/Tezos-logo.png?1547034862
                         cryptoPortfolioItem(FontAwesomeIcons.btc, "BTC", 410.80,
                             0.0036, "82.19(92%)"),
                         cryptoPortfolioItem(FontAwesomeIcons.ethereum, "ETH",
