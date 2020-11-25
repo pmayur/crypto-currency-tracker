@@ -1,6 +1,30 @@
-# wallet
+# Crypto Currency Portfolio Tracker (WIP)
 
-A new Flutter project.
+Authenticated users can add crypto currency to their portfolio and track their live prices
+
+- Uses Firebase authentication and storage
+- CoinGecko API services for current cyrpto prices
+
+## Screenshots
+
+[Login Page](https://raw.githubusercontent.com/pmayur/crypto-currency-tracker/master/flutter_01.png)
+
+[Signup Page](https://raw.githubusercontent.com/pmayur/crypto-currency-tracker/master/flutter_02.png)
+
+[Home Page](https://raw.githubusercontent.com/pmayur/crypto-currency-tracker/master/flutter_03.png)
+
+[Drawer(Home Page)](https://raw.githubusercontent.com/pmayur/crypto-currency-tracker/master/flutter_04.png)
+
+[Add Coins to Portfolio](https://raw.githubusercontent.com/pmayur/crypto-currency-tracker/master/flutter_05.png)
+
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+## Todo
+- Support for all currencies available
+- Search functionality for adding available coins
+- UI Improvements
+
 
 ## Getting Started
 
