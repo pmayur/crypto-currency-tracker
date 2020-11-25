@@ -163,10 +163,8 @@ class _AddViewState extends State<AddView> {
               padding: EdgeInsets.only(bottom: 20),
               width: MediaQuery.of(context).size.width / 1.3,
               child: TextFormField(
+                enableInteractiveSelection: false,
                 keyboardType: TextInputType.number,
-                inputFormatters: <TextInputFormatter>[
-                  FilteringTextInputFormatter.allow(RegExp('[0-9.]')),
-                ], // Only numbers can be entered
                 controller: _amountController,
                 decoration: InputDecoration(
                   labelText: "Coin Amount",
@@ -178,8 +176,10 @@ class _AddViewState extends State<AddView> {
               height: 50,
               minWidth: 300,
               child: RaisedButton(
-                onPressed: () {
+                onPressed: () async {
                   // onButtonPressed();
+                  await addCoin(dropdownValue, _amountController.text);
+                  Navigator.of(context).pop();
                 },
                 textColor: Colors.white54,
                 color: Color(0xff0a4457),
